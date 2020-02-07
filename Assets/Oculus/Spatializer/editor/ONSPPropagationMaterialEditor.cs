@@ -165,7 +165,7 @@ internal sealed class ONSPPropagationMaterialEditor : Editor{
             points.Capacity = newCount;
 
           for(int i = oldCount; i < newCount; i++)
-            points.Add(new ONSPPropagationMaterial.Point(125 * (1 << i)));
+            points.Add(new Point(125 * (1 << i)));
 
           Undo.SetCurrentGroupName("Points Added");
           GUI.changed = true;
@@ -422,7 +422,7 @@ internal sealed class ONSPPropagationMaterialEditor : Editor{
 
     }
 
-    private Vector2 MapPointPosition(Rect r, ONSPPropagationMaterial.Point point){
+    private Vector2 MapPointPosition(Rect r, Point point){
 
       return new Vector2{
 
@@ -433,9 +433,9 @@ internal sealed class ONSPPropagationMaterialEditor : Editor{
 
     }
 
-    private ONSPPropagationMaterial.Point MapMouseEvent(Rect r, Vector2 v){
+    private Point MapMouseEvent(Rect r, Vector2 v){
 
-      return new ONSPPropagationMaterial.Point {
+      return new Point{
 
         frequency = v.x < r.xMin ? 0 : v.x > r.xMax ? cutoff : MapFrequency((v.x - r.x) / r.width, false),
         data = v.y < r.yMin ? 1 : v.y > r.yMax ? 0 : MapData(1 - (v.y - r.y) / r.height, false)
